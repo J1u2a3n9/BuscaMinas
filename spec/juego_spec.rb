@@ -1,4 +1,4 @@
-require 'Juego.rb'
+require 'juego.rb'
 
 
 RSpec.describe Juego do
