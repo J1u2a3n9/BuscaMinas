@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+    <title>Buscaminas </title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style type = text/css> 
+        html{
+            font-family: 'Montserrat', sans-serif;
+        }
+        header{
+            height: 95px;
+            margin:auto;
+            display:flex;
+            text-align:justify;
+            justify-content: space-between;
+            background-color:#020301;
+            color:#f3f5f9;
+            padding:20px;
+        }
+        footer{
+            background-color:#020301;
+            color:#f3f5f9;
+            padding:20px;
+            text-align: center;
+            margin-top: auto;
+            position:absolute;
+            bottom:0;
+            width:100%;
+        }
+        body{
+          background-color:#f3f5f9;
+          color:#020301;
+        }
+        header img{
+            margin-right:50px;
+        }
+        header .left{
+            display: flex;
+        }
+        header img .vaca{
+            text-align: right;
+            margin: 0px;
+        }
+
+        header .titulo-container{
+            margin:0px;
+            align-content: center;
+            height: 30px;
+        }
+        body{
+            margin:0px;
+
+        }
+        body .main{
+            background-color:#f3f5f9;
+            color:#020301;
+            padding:30px;
+            margin:0px;
+        }
+        form{
+            text-align: center;
+        }
+        .button{
+            background-color:#020301;
+            color:#f3f5f9;
+            padding:10px;
+            border-radius: 3px;
+            width: auto;
+            font-size: 20px;
+            text-transform: capitalize;
+        }
+        .button:hover{
+            background-color:#90adc6;
+            color:#020301;
+        }
+        .last-title{
+            text-align:center;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <div clas="titlo-container">
+            <h1 class="titulo">Boom! </h1>
+        </div>
+        
+    </header>
+    <div class="main">
+        <h2>Reglas del juego </h2>
+        <p>El juego comienza con un tablero de casillas cubiertas. Algunas de las casillas ocultan minas. El Jugador tiene que despejar las casillas sin minas y señalar las que ocultan el peligro</p>
+        <p>Si  el jugador despeja una casilla con una mina, pierde el juego. Si una casilla despejada no tiene mina pero hay algunas minas en las casillas alrededor, la casila exhibirá un número de las minas que están en ocho casillas circundantes<p>
+        <p>Basándose en estos números, el jugador tiene que deducir dónde están las minas. El objetivo del juego es encontrar todas las minas y despejar todas las casillas que no las tienen<p>
+        <form method='post' action='/juego'>
+            <input type='submit' value='Comenzar' class="button">
+        </form>
+    </div>
+</body>
+<footer>
+    <p>Buscaminas</p>
+</footer>
+</html>

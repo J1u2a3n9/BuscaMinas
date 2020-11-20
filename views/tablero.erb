@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<style>body{background:url("https://img.webme.com/pic/c/cssplantillas/confeti.gif")repeat fixed;}</style>
+<h1>Bienvenido al Juego buscaminas</h1>
+
+
+
+
+<div class="container-fluid" id="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-4" align="center">     
+                    <div align="center">
+                    <h8>Ingrese las coordenadas</h8>
+                    </div>
+                        <form method="post" action="/seleccionar">
+                        <h8>X: </h8>  
+                        <input type="text" name="x"  size="3">
+                        <h8>Y: </h8>  
+                        <input type="text" name="y" size="3">
+                        <div align="center">
+                        <input type="submit" value="Click"  >
+                        </form>
+                        </div>
+                    </div>
+                    
+
+
+                </div>
+                <div class="col-8">
+                    <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;">
+                        <% for i in 0..8 %>
+                            <tr>
+                                <% for j in 0..8 %>
+                                    <td align="center" style="WIDTH: 75px; HEIGHT: 75px" > <%=$juego.get[i][j]%></td>
+                                <%end%>
+                            </tr> 
+                        <%end%>
+
+                    </table>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
