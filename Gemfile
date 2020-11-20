@@ -15,3 +15,4 @@ gem 'better_errors', '~> 2.7' #better log errors on web
 gem "rubycritic"
 gem 'rubocop'
 gem 'rake'
+
