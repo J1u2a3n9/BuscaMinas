@@ -56,6 +56,59 @@ RSpec.describe Juego do
         expect(@@juego.recorristeTablero(3,8)).to eq('Perdiste :(')
     end
     
+    it 'deberia devolver el tamaño en x del tablero que ingrese ' do
+        @@juego.guardarTamaño(4,4)
+        expect(@@juego.devolverX()).to eq(4)
+    end
+
+    it 'deberia devolver true si guarda el tamaño ingresado de mi matriz en las cordenadas de x ' do
+        expect(@@juego.guardarTamaño(4,4)).to eq(true)
+    end
+
+    it 'deberia devolver el tamaño en y del tablero que ingrese ' do
+        @@juego.guardarTamaño(5,5)
+        expect(@@juego.devolverY()).to eq(5)
+    end
+
+    it 'deberia devolver true si guarda el tamaño ingresado de mi matriz en las cordenadas de y' do
+        expect(@@juego.guardarTamaño(5,5)).to eq(true)
+    end
+
+    it 'deberia darme un mensaje de excepcion que diga si ingrese numeros fuera del limite de mi matriz ' do
+        @@juego.guardarTamaño(10,10)
+        expect(@@juego.FueraDelimite(11,11)).to eq(true)
+    end
+
+    it 'deberia darme false si ingreso una matriz que no es cuadratica ' do
+        @@juego.guardarTamaño(5,6)
+        expect(@@juego.controlTamañoTablero(5,6)).to eq(false)
+    end
+
+    it 'deberia darme false si coloco mas cantidad de minas de las especificadas' do
+        @@juego.guardarTamaño(4,4)
+        @@juego.controlPonerMinas()
+        @@juego.controlPonerMinas()
+        @@juego.controlPonerMinas()
+        @@juego.controlPonerMinas()
+        @@juego.controlPonerMinas()
+        expect(@@juego.controlPonerMinas()).to eq(false)
+    end
+
+    it 'deberia devolverme true en la posicion que puse una bomba' do
+        @@juego.guardarTamaño(4,4)
+        @@juego.insertarBomba(0,0)
+        expect(@@juego.esBomba(0,0)).to eq(true)
+    end
+
+    
+    it 'deberia devolverme false en la posicion que puse una bomba' do
+        @@juego.guardarTamaño(4,4)
+        @@juego.insertarBomba(0,0)
+        expect(@@juego.esBomba(1,2)).to eq(false)
+    end
+    
+
+
 
 
 
