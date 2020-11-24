@@ -101,9 +101,8 @@ RSpec.describe Juego do
        @@juego.marcar(3,3)
        expect(@@juego.gano()).to eq(true)
    end
+
    
-
-
 
        
 
