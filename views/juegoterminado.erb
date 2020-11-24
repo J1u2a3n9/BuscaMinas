@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<style>body{background:url("https://img.webme.com/pic/c/cssplantillas/confeti.gif")repeat fixed;}</style>
+
+<center>
+<h1>Perdiste :(</h1>
+                                
+        <form method="post" action="/volverAjugar">
+                <input type="submit" value="Volver A Jugar?"  >
+        </form> 
+        <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;"> 
+                                <% for i in 0..$juego.getfila-1 %>   
+                                        <tr>
+                                                <% for j in 0..$juego.getcolumna-1 %>         
+                                                        <% if $juego.getCampo[i][j] == -1 %> 
+                                                                <td align="center" style="WIDTH: 75px; HEIGHT: 75px" >*</td>
+                                                        <% else %>
+                                                                <td align="center" style="WIDTH: 75px; HEIGHT: 75px" ><%=$juego.getCampo[i][j]%></td>
+                                                        <%end%>
+                                                <%end%>                                        
+                                        </tr> 
+                                <% end %>       
+        </table>
+
+
+
+</center>

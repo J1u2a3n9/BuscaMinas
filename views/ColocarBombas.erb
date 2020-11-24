@@ -4,31 +4,36 @@
 
 <center>
 
-<h1>Bienvenido al Juego buscaminas</h1>
-                        <form method="post" action="/marcar">
+<h1>Ingrese las minas para el juego</h1>
+                        <form method="post" action="/marcarBombas">
                         <h8>X: </h8>  
                         <input type="text" name="x"  size="3">
                         <h8>Y: </h8>  
                         <input type="text" name="y" size="3">
     
-                        <input type="submit" value="Click"  >
+                        <input type="submit" value="Marcar"  >
                         </form>
+                        <form method="post" action="/empezarFacil">
+                            <input type="submit" value="Empezar Juego"  >
+                        </form>
+                        
                         <%if @res==0 %>
                         <h2>Se marco Incorrectamente</h2>
                         <% end %>
                         
 
-        <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;">
+        <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;">  
                         <% for i in 0..$juego.getfila-1 %>
                                 
                                 <tr>
                                     <% for j in 0..$juego.getcolumna-1 %>      
-                                    <td align="center" style="WIDTH: 75px; HEIGHT: 75px" ><%=$juego.getJugadas[i][j]%></td>
+                                    <td align="center" style="WIDTH: 75px; HEIGHT: 75px" ><%=$juego.getVistaBom[i][j]%></td>
                                     <%end%>                                                                    
                                 </tr> 
                         <%end%>
 
         </table>
+               
             
     </center>
 

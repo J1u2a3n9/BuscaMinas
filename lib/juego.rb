@@ -1,169 +1,87 @@
 class Juego
-    @@contador=0
-    @@tamX
-    @@tamY
-    @@tamXPosiciones
-    @@tamYPosiciones
-    @@contadorMinas=0
-
-    def initialize()
-        @matriz= Array.new(9) { Array.new(9) { ' ' } }
+    def initialize(fila,columna)
+        @SIN_BOMBA = -2
+        @BOMBA= -1
+        @contJugadas=0
+        @FUERA_TAB= 0
+        @contBomba=0
+        @fila=fila
+        @columna=columna
+        @campo= Array.new(fila) { Array.new(columna) { @SIN_BOMBA } } #backend  matris con los numeros y bomba back
+        @jugadas=Array.new(fila) { Array.new(columna) { ' ' } } #frontend lo que muestas al usuario
+        @vistaBom=Array.new(fila) { Array.new(columna) { ' ' } }#backend de las bombas para que simule el marcado cuando marcas bombas
+        for i in 0..fila-1
+            for j in 0..columna-1
+                @vistaBom[i][j]="X:"+i.to_s+" "+"Y:"+j.to_s 
+            end
+        end
+    end
+    def getCampo()
+        return @campo
     end
 
-    def devolverX()
-        return @@tamX
+    def getJugadas()
+        return @jugadas
     end
-
-    def devolverY()
-        return @@tamY
+    def getVistaBom()
+        return @vistaBom
     end
-
-    def controlTamañoTablero(tamX,tamY)
-        if(tamX == tamY && tamX>3 && tamY>3)
-            resp=true
+    def getfila
+        return @fila
+    end
+    def getcolumna
+        return @columna
+    end
+    def gano()
+        if (@fila*@columna-@contBomba) == @contJugadas
+            return true
         else
-            resp=false
+            return false
         end
-        return resp
     end
-
-    def controlPonerMinas()
-        if(@@contadorMinas.to_i<=@tamX.to_i+1)
-            @@contadorMinas=@@contadorMinas+1
-            resp=true
+    def marcar(posx,posy) 
+        if((posx>=0 && posx<@columna) && (posy>=0 && posy<@fila))   
+            if @campo[posx][posy]==@BOMBA
+                return @BOMBA
+            else
+                @contJugadas=@contJugadas+1
+                @jugadas[posx][posy]=@campo[posx][posy]
+                return @SIN_BOMBA
+            end 
         else
-            resp=false
+            return @FUERA_TAB
         end
-        return resp
     end
-
-
-    def devolverValor(posX,posY)
-        return @matriz[posX.to_i][posY.to_i]
-    end
-
-    def esBomba(posX,posY)
-        if(devolverValor(posX,posY)=='*')
-            resp=true
+    def agregarBombas(posx,posy)
+        if((posx>=0 && posx<@columna) && (posy>=0 && posy<@fila))   
+            @campo[posx][posy]=@BOMBA
+            @vistaBom[posx][posy]='*'
+            @contBomba=@contBomba+1
+            return @BOMBA
         else
-            resp=false
-        end
+            return @FUERA_TAB
+        end 
     end
-
-    def insertarBomba(posX,posY)
-        @matriz[posX.to_i][posY.to_i]='*'
-    end
-
-
-    def guardarTamaño(tamX,tamY)
-        resp=controlTamañoTablero(tamX,tamY)
-        if(resp==true)
-            @@tamX=tamX
-            @@tamY=tamY
-        end        
-        return resp
-    end
-
-    def FueraDelimite(tamX,tamY)
-        if(tamX.to_i > @@tamX || tamY.to_i > @@tamY) || (tamX.to_i<0 || tamY.to_i<0)
-            resp=true
-        else 
-            resp=false
-        end
-        return resp
-    end
-
-    def pintar(posicionX,posicionY,caracter)
-        @matriz[posicionX.to_i][posicionY.to_i]=caracter 
-    end
-
-    def get()
-        return @matriz
-    end
-
-
-
-    def mostrarBomba(posicionX,posicionY) 
-        if (posicionX.to_i==1 && posicionY.to_i==6 || posicionX.to_i==2 && posicionY.to_i==4 || posicionX.to_i==3 && posicionY.to_i==3 || posicionX.to_i==3 && posicionY.to_i==6 || posicionX.to_i==3 && posicionY.to_i==8 || posicionX.to_i==4 && posicionY.to_i==1 ||  posicionX.to_i==5 && posicionY.to_i==1 || posicionX.to_i==6 && posicionY.to_i==8 || posicionX.to_i==7 && posicionY.to_i==1 || posicionX.to_i==7 && posicionY.to_i==2  )
-            return '*'
-        end
-    end
-
-    def mostrarEspaciosVacios(posicionX,posicionY) 
-        if ( posicionX.to_i==0 && posicionY.to_i==0 || posicionX.to_i==0 && posicionY.to_i==1 || posicionX.to_i==0 && posicionY.to_i==2 || posicionX.to_i==0 && posicionY.to_i==3  || posicionX.to_i==0 && posicionY.to_i==8 ||  posicionX.to_i==1 && posicionY.to_i==0 || posicionX.to_i==1 && posicionY.to_i==1 || posicionX.to_i==1 && posicionY.to_i==2 || posicionX.to_i==1 && posicionY.to_i==8 || posicionX.to_i==2 && posicionY.to_i==0 || posicionX.to_i==2 && posicionY.to_i==1 || posicionX.to_i==5 && posicionY.to_i==3  || posicionX.to_i==5 && posicionY.to_i==4 || posicionX.to_i==5 && posicionY.to_i==5 || posicionX.to_i==5 && posicionY.to_i==6 || posicionX.to_i==6 && posicionY.to_i==4 || posicionX.to_i==6 && posicionY.to_i==5 || posicionX.to_i==6 && posicionY.to_i==6 || posicionX.to_i==7 && posicionY.to_i==4 || posicionX.to_i==7 && posicionY.to_i==5 ||   posicionX.to_i==7 && posicionY.to_i==6 ||  posicionX.to_i==8 && posicionY.to_i==4 || posicionX.to_i==8 && posicionY.to_i==5 || posicionX.to_i==8 && posicionY.to_i==6 || posicionX.to_i==8 && posicionY.to_i==7 || posicionX.to_i==8 && posicionY.to_i==8)
-            return '-'
-        end
-    end
-
-    def mostrarNumeros(posicionX,posicionY)
-        if (posicionX.to_i==0 && posicionY.to_i==5 || posicionX.to_i==0 && posicionY.to_i==6 || posicionX.to_i==0 && posicionY.to_i==7 || posicionX.to_i==1 && posicionY.to_i==3 || posicionX.to_i==1 && posicionY.to_i==4 || posicionX.to_i==1 && posicionY.to_i==7 ||  posicionX.to_i==2 && posicionY.to_i==2 || posicionX.to_i==2 && posicionY.to_i==8 || posicionX.to_i==3 && posicionY.to_i==0 || posicionX.to_i==3 && posicionY.to_i==1 || posicionX.to_i==4 && posicionY.to_i==3 || posicionX.to_i==4 && posicionY.to_i==4 || posicionX.to_i==4 && posicionY.to_i==5  || posicionX.to_i==4 && posicionY.to_i==6 || posicionX.to_i==4 && posicionY.to_i==8 || posicionX.to_i==5 && posicionY.to_i==7 || posicionX.to_i==5 && posicionY.to_i==8 || posicionX.to_i==6 && posicionY.to_i==3 || posicionX.to_i==6 && posicionY.to_i==7 || posicionX.to_i==7 && posicionY.to_i==0 || posicionX.to_i==7 && posicionY.to_i==3 ||   posicionX.to_i==7 && posicionY.to_i==7 ||  posicionX.to_i==7 && posicionY.to_i==8 || posicionX.to_i==8 && posicionY.to_i==0 || posicionX.to_i==8 && posicionY.to_i==3 )
-             respuesta='1'
-        end
-        if (posicionX.to_i==1 && posicionY.to_i==5 || posicionX.to_i==2 && posicionY.to_i==3 || posicionX.to_i==2 && posicionY.to_i==6 || posicionX.to_i==3 && posicionY.to_i==2 || posicionX.to_i==3 && posicionY.to_i==4 || posicionX.to_i==3 && posicionY.to_i==5 ||  posicionX.to_i==3 && posicionY.to_i==7 || posicionX.to_i==4 && posicionY.to_i==0 || posicionX.to_i==4 && posicionY.to_i==7 || posicionX.to_i==5 && posicionY.to_i==0 || posicionX.to_i==5 && posicionY.to_i==2 || posicionX.to_i==6 && posicionY.to_i==0 || posicionX.to_i==8 && posicionY.to_i==1  || posicionX.to_i==8 && posicionY.to_i==2 )
-            respuesta='2'
-        end
-        if (posicionX.to_i==2 && posicionY.to_i==5 || posicionX.to_i==2 && posicionY.to_i==7 || posicionX.to_i==4 && posicionY.to_i==2 || posicionX.to_i==6 && posicionY.to_i==1 || posicionX.to_i==6 && posicionY.to_i==2 )
-            respuesta='3'
-        end
-
-        return respuesta
-    end
-
-
-
-
-
-
-    def click(posicionX,posicionY)
-        if (posicionX.to_i>9 || posicionY.to_i>9)
-            respuesta='Fuera de rango'
-        else
-            if mostrarBomba(posicionX,posicionY) == '*'
-                respuesta='*'
-            else 
-                if mostrarEspaciosVacios(posicionX,posicionY)=='-'
-                    respuesta='-'
-                else
-                    respuesta=mostrarNumeros(posicionX,posicionY)
+    def contar2(x,y) #cuenta bombas al rededor
+        nbombas = 0 
+        for i in x-1..x+1 
+            for j in y-1..y+1 
+                if (i >= 0 && i < @fila) && (j >= 0 && j < @columna) 
+                    if @campo[i][j] == @BOMBA #existe bomba
+                        nbombas=nbombas+1 
+                    end
                 end
             end
         end
-        return respuesta
+        return nbombas
     end
-
-
-    def devuelveResultado(respuesta)
-        if (respuesta==false)
-            return 'Perdiste :('
-        else
-            return 'Ganaste :)'
-        end
+    def establecerNumeros() #le da numeros a la matriz pero antes tiene que haber bombas si no hay bombas toda la matris es 0
+            for i in  0..@fila-1
+                for j in 0..@columna-1
+                    if @campo[i][j] == @SIN_BOMBA #no tiene bomba
+                        @campo[i][j] = contar2(i,j)
+                    end
+                end
+            end
     end
-
-    def recorristeTablero(posicionX,posicionY)
-        if (mostrarBomba(posicionX,posicionY)=='*')
-            @@contador=@@contador-1
-            respuestas=devuelveResultado(false)
-        end
-        if (mostrarEspaciosVacios(posicionX,posicionY)=='-' || mostrarNumeros(posicionX,posicionY)=='1'|| mostrarNumeros(posicionX,posicionY)=='2'|| mostrarNumeros(posicionX,posicionY)=='3')
-            @@contador=@@contador+1
-        end
-        if(@@contador==71)
-            respuestas=devuelveResultado(true)
-        end
-        return respuestas
-    end
-
-
- 
-
-
-
-
-
-
-
-
-
 end
-
