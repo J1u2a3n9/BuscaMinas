@@ -82,24 +82,36 @@
     <header>
         
         <div clas="titlo-container">
-                <h1 class="titulo">Ganaste <%= $nombre%>!!!!</h1>         
+                <h1 class="titulo">Ingrese la modalidad que quiere Jugar</h1>         
         </div>
         
     </header>
     <div class="main">
             <center>   
-                    <img src="https://media.tenor.com/images/e18de738e02a96ebacd4127a2f07a1cc/tenor.gif" width="450" height="450">
-                    
-                    <form method="post" action="/volverAjugar">
-                    <input type="submit" value="Volver A Jugar?"  >
-                    </form> 
+            <TABLE BORDER WIDTH=60% HEIGHT=200>
+            <TR>
+                <TD BGCOLOR="#EEE8AA" WIDTH=52%>
+                    <center>
+                        <h1>Clasico</h1>
+                        <form method="post" action="/Juego_Clasico">
+                            <input type="submit" value="Click"  >
+                        </form>
+                    </center>
+                </TD>
+                <TD BGCOLOR="#98FB98" >
+                    <center>
+                        <h1>Personalizado  </h1>
+                        <form method="post" action="/Interfaz_personalizado">
+                        <input type="submit" value="Click"  >
+                    </form>
+                    </center>
+                </TD>
+            </TR>
+            </TABLE>
             </center>
     </div>
 </body>
 <footer>
-    <p>Buscaminas</p>
+    <p>Buscaminas Vercion 2.0</p>
 </footer>
 </html>
-
-
-

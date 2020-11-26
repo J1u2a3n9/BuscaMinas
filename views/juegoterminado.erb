@@ -1,13 +1,87 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-<style>body{background:url("https://img.webme.com/pic/c/cssplantillas/confeti.gif")repeat fixed;}</style>
+<!DOCTYPE html>
+<head>
+        <title>Buscaminas </title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style type = text/css> 
+        html{
+                font-family: 'Montserrat', sans-serif;
+        }
+        header{
+                height: 95px;
+                margin:auto;
+                display:flex;
+                text-align:justify;
+                justify-content: space-between;
+                background-color:#020301;
+                color:#f3f5f9;
+                padding:20px;
+        }
+        body{
+                background-color:#f3f5f9;
+                color:#020301;
+        }
+        header img{
+                margin-right:50px;
+        }
+        header .left{
+                display: flex;
+        }
+        header img .vaca{
+                text-align: right;
+                margin: 0px;
+        }
 
-<center>
-<h1>Perdiste :(</h1>
-                                
-        <form method="post" action="/volverAjugar">
-                <input type="submit" value="Volver A Jugar?"  >
-        </form> 
-        <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;"> 
+        header .titulo-container{
+                margin:0px;
+                align-content: center;
+                height: 30px;
+        }
+        body{
+                margin:0px;
+
+        }
+        body .main{
+                background-color:#f3f5f9;
+                color:#020301;
+                padding:30px;
+                margin:0px;
+        }
+        form{
+                text-align: center;
+        }
+        .button{
+                background-color:#020301;
+                color:#f3f5f9;
+                padding:10px;
+                border-radius: 3px;
+                width: auto;
+                font-size: 20px;
+                text-transform: capitalize;
+        }
+        .button:hover{
+                background-color:#90adc6;
+                color:#020301;
+        }
+        .last-title{
+                text-align:center;
+                padding-top: 30px;
+        }
+</style>
+</head>
+<body>
+<header>
+        
+        <div clas="titlo-container">
+                <h1 class="titulo">Perdiste <%=$nombre%> :(</h1>         
+        </div>
+        
+</header>
+        <div class="main">
+                <center>   
+                                <form method="post" action="/volverAjugar">
+                                        <input type="submit" value="Volver A Jugar?"  >
+                                </form> 
+                        <table class="egt" BORDER BGCOLOR="#ECECEC" style="margin: 0 auto;"> 
                                 <% for i in 0..$juego.getfila-1 %>   
                                         <tr>
                                                 <% for j in 0..$juego.getcolumna-1 %>         
@@ -16,11 +90,36 @@
                                                         <% else %>
                                                                 <td align="center" style="WIDTH: 75px; HEIGHT: 75px" ><%=$juego.getCampo[i][j]%></td>
                                                         <%end%>
-                                                <%end%>                                        
+                                                        <%end%>                                        
                                         </tr> 
                                 <% end %>       
-        </table>
+                        </table>
+                </center>
+        </div>
+</body>
+</html>
 
 
 
-</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

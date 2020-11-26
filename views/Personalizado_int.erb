@@ -82,24 +82,33 @@
     <header>
         
         <div clas="titlo-container">
-                <h1 class="titulo">Ganaste <%= $nombre%>!!!!</h1>         
+                <h1 class="titulo">Personalizado</h1>         
         </div>
         
     </header>
     <div class="main">
             <center>   
-                    <img src="https://media.tenor.com/images/e18de738e02a96ebacd4127a2f07a1cc/tenor.gif" width="450" height="450">
-                    
-                    <form method="post" action="/volverAjugar">
-                    <input type="submit" value="Volver A Jugar?"  >
-                    </form> 
+                        <%if @validacion %>
+                            <h2>No se puede hacer un juego asi ! :(<h2>
+                        <%end%>
+                        <%if $nombre==""%>
+                            <h2 style="color:#FF0000">Aviso!!!</h2>
+                            <h2>No tiene nombre? (͠◉_◉᷅ ) </h2>
+                        <% end %>
+                        <form method="post" action="/personalizado">
+                            <h3>Ingrese su nombre</h3>
+                                <input type="tex" value="" name="nombre"  >
+                            <h3>Numero de Filas</h3>
+                                <input type="text" value=" " name="fil"  >
+                            <h3>Numero de Columnas</h3>
+                                <input type="text" value=" " name="colum"  >
+                            <br>
+                                <input type="submit" value="Jugar Personalizado"  >
+                        </form>
             </center>
     </div>
 </body>
 <footer>
-    <p>Buscaminas</p>
+    <p>Buscaminas Vercion 2.0</p>
 </footer>
 </html>
-
-
-

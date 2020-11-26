@@ -1,10 +1,17 @@
 class Juego
     def initialize(fila,columna)
+        #constantes
         @SIN_BOMBA = -2
         @BOMBA= -1
-        @contJugadas=0
         @FUERA_TAB= 0
+        @MismaCasilla=-4
+        @estalleno=-5
+        #***
+        
+        @contJugadas=0
         @contBomba=0
+        
+
         @fila=fila
         @columna=columna
         @campo= Array.new(fila) { Array.new(columna) { @SIN_BOMBA } } #backend  matris con los numeros y bomba back
@@ -39,28 +46,40 @@ class Juego
             return false
         end
     end
-    def marcar(posx,posy) 
+    def marcarCasilla(posx,posy) 
         if((posx>=0 && posx<@columna) && (posy>=0 && posy<@fila))   
             if @campo[posx][posy]==@BOMBA
                 return @BOMBA
             else
-                @contJugadas=@contJugadas+1
-                @jugadas[posx][posy]=@campo[posx][posy]
-                return @SIN_BOMBA
+                if @jugadas[posx][posy]==' '
+                    @contJugadas=@contJugadas+1
+                    @jugadas[posx][posy]=@campo[posx][posy]
+                    return @SIN_BOMBA
+                else
+                    return @MismaCasilla
+                end
             end 
         else
             return @FUERA_TAB
         end
     end
     def agregarBombas(posx,posy)
-        if((posx>=0 && posx<@columna) && (posy>=0 && posy<@fila))   
-            @campo[posx][posy]=@BOMBA
-            @vistaBom[posx][posy]='*'
-            @contBomba=@contBomba+1
-            return @BOMBA
+        if((@fila*@columna)-1)==@contBomba
+            return @estalleno
         else
-            return @FUERA_TAB
-        end 
+            if((posx>=0 && posx<@columna) && (posy>=0 && posy<@fila))   
+                if @campo[posx][posy] != @BOMBA
+                    @campo[posx][posy]=@BOMBA
+                    @vistaBom[posx][posy]='*'
+                    @contBomba=@contBomba+1
+                return @BOMBA
+                else
+                    return @MismaCasilla
+                end
+            else
+                return @FUERA_TAB
+            end 
+        end
     end
     def contar2(x,y) #cuenta bombas al rededor
         nbombas = 0 
@@ -85,4 +104,3 @@ class Juego
             end
     end
 end
-
